@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>أورليجن | نظام تشغيل ذكي لمغاسل الملابس</title>
+<title>اورليجن</title>
 <meta name="description" content="منظومة تشغيل تقنية ذكية ترفع كفاءة وجودة مغاسل الملابس في المملكة العربية السعودية">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<meta property="og:image" content="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -440,7 +443,7 @@ html[dir="ltr"] .inline-en{ display:inline; }
   <div class="container topbar-inner">
     <a href="#home" class="brand">
       <img src="logo.png" alt="ORLIGN logo">
-      <span data-ar>أورليجن</span><span data-en>ORLIGN</span>
+      <span>اورليجن</span>
     </a>
     <nav class="nav-links">
       <a href="#why" data-ar>لماذا أورليجن؟</a><a href="#why" data-en>Why Orlign</a>
@@ -450,8 +453,6 @@ html[dir="ltr"] .inline-en{ display:inline; }
       <a href="#contact" data-ar>تواصل معنا</a><a href="#contact" data-en>Contact</a>
     </nav>
     <div class="topbar-actions">
-      <button class="lang-btn" id="langBtn" data-ar>EN</button>
-      <button class="lang-btn" id="langBtn2" data-en style="display:none">عربي</button>
       <a href="#contact" class="btn btn-primary" data-ar>انضم كشريك</a>
       <a href="#contact" class="btn btn-primary" data-en style="display:none">Join as partner</a>
       <div class="burger" id="burger"><span></span><span></span><span></span></div>
@@ -695,7 +696,7 @@ html[dir="ltr"] .inline-en{ display:inline; }
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand"><img src="logo.png" alt="ORLIGN"><span data-ar>أورليجن</span><span data-en>ORLIGN</span></div>
+        <div class="footer-brand"><img src="logo.png" alt="ORLIGN"><span>اورليجن</span></div>
         <p style="font-size:.88rem; max-width:280px; color:#aab1b7;" data-ar>نظام تشغيل ذكي لمغاسل الملابس في المملكة العربية السعودية</p>
         <p style="font-size:.88rem; max-width:280px; color:#aab1b7;" data-en>A smart operating system for laundries in Saudi Arabia</p>
         <div class="socials" style="margin-top:18px;">
@@ -765,22 +766,24 @@ function setLang(lang){
   const html = document.documentElement;
   if(lang==='en'){
     html.lang='en'; html.dir='ltr';
-    document.getElementById('langBtn').style.display='none';
-    document.getElementById('langBtn2').style.display='inline-flex';
+    const b1 = document.getElementById('langBtn'); if(b1) b1.style.display='none';
+    const b2 = document.getElementById('langBtn2'); if(b2) b2.style.display='inline-flex';
     document.querySelectorAll('.btn[data-ar]').forEach(b=>b.style.display='none');
     document.querySelectorAll('.btn[data-en]').forEach(b=>b.style.display='inline-flex');
   } else {
     html.lang='ar'; html.dir='rtl';
-    document.getElementById('langBtn').style.display='inline-flex';
-    document.getElementById('langBtn2').style.display='none';
+    const b1 = document.getElementById('langBtn'); if(b1) b1.style.display='inline-flex';
+    const b2 = document.getElementById('langBtn2'); if(b2) b2.style.display='none';
     document.querySelectorAll('.btn[data-ar]').forEach(b=>b.style.display='inline-flex');
     document.querySelectorAll('.btn[data-en]').forEach(b=>b.style.display='none');
   }
   localStorage.setItem? null : null;
   applyPlaceholders();
 }
-document.getElementById('langBtn').addEventListener('click', ()=> setLang('en'));
-document.getElementById('langBtn2').addEventListener('click', ()=> setLang('ar'));
+const langBtn = document.getElementById('langBtn');
+if(langBtn) langBtn.addEventListener('click', ()=> setLang('en'));
+const langBtn2 = document.getElementById('langBtn2');
+if(langBtn2) langBtn2.addEventListener('click', ()=> setLang('ar'));
 applyPlaceholders();
 
 // ---- Contact form -> WhatsApp ----
